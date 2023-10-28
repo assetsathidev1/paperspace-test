@@ -1,0 +1,12 @@
+# Ignore common Python data science files
+.DS_Store
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+*.egg-info/
+*.egg/
+*.log
+*.swp
+.DS_Store
+.env
+*.flac

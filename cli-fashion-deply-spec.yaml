@@ -1,0 +1,8 @@
+image: cwetherill/paperspace-onnx-sample
+port: 8501
+resources:
+  replicas: 1
+  instanceType: C4
+models:
+  - id: mosqqhgydnbf3wu
+    path: /opt/models/fashion-mnist

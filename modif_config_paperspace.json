@@ -1,0 +1,17 @@
+{
+    "apiVersion": "v0alpha0",
+    "enabled": true,
+    "image": "cwetherill/paperspace-onnx-sample",
+    "models": [
+      {
+        "id": "mosqqhgydnbf3wu",
+        "path": "/opt/models/fashion-mnist"
+      }
+    ],
+    "name": "desktop-fashion-deploy",
+    "port": 8501,
+    "resources": {
+      "instanceType": "C4",
+      "replicas": 1
+    }
+  }
