@@ -31,7 +31,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            meher92/experiments:${{ steps.docker-tag-name.outputs.DOCKER_TAG_NAME }}
+            meher92/experiments:latest
 
       - uses: paperspace/deploy-action@v1.3
         name: Deploy to Paperspace
@@ -41,4 +41,3 @@ jobs:
         with:
           projectId: ptznl3k1nugi8
           image: meher92/experiments:latest
-          configPath: ../../paperspace.yaml
