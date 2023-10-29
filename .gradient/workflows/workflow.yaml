@@ -1,7 +1,7 @@
 'on':
   github:
-    branches:
-      only: main
+    branches: main, rest_fast_app
+
 jobs:
   CloneRepo:
     resources:
