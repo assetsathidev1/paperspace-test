@@ -23,3 +23,11 @@ Repo to test out paperspace platforms
 
 
 ## Using HF-FastAPI-Paperspace Template
+- Base image is large, taking a lot of time to build locally
+- Custom docker image creation instructions not super clear
+    - Faced issues in pushing images to docker hub and pulling them to paperspace
+    - `containerRegistry` in config yaml to be added with value as given from console -> team setting -> containers
+    - Update [readme](https://github.com/Paperspace/deploy-action/tree/v1.3) with 2 changes
+        - `v1.2` -> `v1.3`
+        - `configPath` explanation, how does the runner find `paperspace.json` file.
+    - This [link](https://docs-next.paperspace.com/deploying/app-config) helped
