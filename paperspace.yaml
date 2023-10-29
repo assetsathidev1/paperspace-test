@@ -41,7 +41,7 @@ healthChecks:
 # settings here
 resources:
   replicas: 1
-  machineType: C5
+  machineType: RTX4000
   # The ports the service is running on inside the above image
   ports: [8000]
   autoscaling:
@@ -50,7 +50,7 @@ resources:
     metrics:
       - metric: requestDuration
         summary: average
-        value: 10
+        value: 120
       - metric: cpu
         summary: average
         value: 75
