@@ -40,4 +40,5 @@ jobs:
           PAPERSPACE_API_KEY: ${{ secrets.PAPERSPACE_API_KEY }}
         with:
           projectId: ptznl3k1nugi8
-          image: meher92/experiments:${{ steps.docker-tag-name.outputs.DOCKER_TAG_NAME }}
+          image: meher92/experiments:latest
+          configPath: ../../paperspace.yaml

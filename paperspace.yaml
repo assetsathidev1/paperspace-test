@@ -4,7 +4,7 @@ enabled: true
 # The name of your project
 name: meher92-fastapi-hf-app
 # You should replace this with a Docker image you build
-image: paperspace/fastapi-hf-template-app:2023-06-20
+image: meher92/experiments:latest
 # Using integrations to bring in external resource
 # (e.g. Hugging Face model, S3 bucket)
 integrations:
