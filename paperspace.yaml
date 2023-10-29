@@ -50,7 +50,7 @@ resources:
     metrics:
       - metric: requestDuration
         summary: average
-        value: 120
+        value: 70
       - metric: cpu
         summary: average
         value: 75
