@@ -1,8 +1,9 @@
 name: test-pr-docker
 on:
   pull_request:
-    paths:
-      - "*"
+    types: [closed]
+    branches:
+      - main
 
 
 jobs:
@@ -41,3 +42,4 @@ jobs:
         with:
           projectId: ptznl3k1nugi8
           image: meher92/experiments:latest
+          configPath: ../../paperspace.yaml

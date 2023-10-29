@@ -2,7 +2,8 @@ apiVersion: v1
 # To disable the application change enabled: false
 enabled: true
 # The name of your project
-name: meher92-fastapi-hf-app
+name: meher92-fastapi-hf-from-actions
+containerRegistry: meher92-dockerhub-experiment-repositiry
 # You should replace this with a Docker image you build
 image: meher92/experiments:latest
 # Using integrations to bring in external resource
