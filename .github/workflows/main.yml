@@ -1,10 +1,21 @@
-- name: Paperspace Deploy
-  # You may pin to the exact commit or the version.
-  # uses: Paperspace/deploy-action@9c0bec94eec839b461c1dac3bed810bd31327efa
-  uses: Paperspace/deploy-action@v1.3
-  with:
-    # Paperspace API Key. Defaults to env.PAPERSPACE_API_KEY.
-    # Project ID that the deployment lives under.
-    projectId: ptznl3k1nugi8
-    # Optional container image to use for the deployment.
-    image: meher92/experiments
+name: test-pr
+on:
+  pull_request:
+    paths:
+      - "*"
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: paperspace/deploy-action@v1.2
+        name: Deploy Staging
+        id: deploy
+        env:
+          PAPERSPACE_API_KEY: ${{ secrets.PAPERSPACE_API_KEY }}
+        with:
+          projectId: ptznl3k1nugi8
+          image: meher92/experiments
