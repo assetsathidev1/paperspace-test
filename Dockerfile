@@ -1,6 +1,13 @@
-FROM paperspace/fastapi-app-base:2023-06-14
+FROM python:3.8-slim-buster
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY app ./app
 COPY requirements.txt ./
