@@ -48,7 +48,15 @@ def text2speech(message):
         audio_file.write(response.content)
 
 
-path = "/Users/mehervamsi/Desktop/Work/skroll-ws/interns-ws/test_imgs/t1.jpg"
+path = "../test_imgs/t1.jpg"
 scenario = img2txt(path)
 story = generate_story(scenario)
 text2speech(story)
+
+"""
+Requirements:
+langchain==0.0.169
+transformers[torch]==4.34.1
+pillow
+python-dotenv==1.0.0
+"""

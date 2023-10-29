@@ -56,7 +56,7 @@ feature_extractor = YolosFeatureExtractor.from_pretrained(FEATURE_EXTRACTOR_NAME
 model = YolosForObjectDetection.from_pretrained(MODEL_NAME)
 
 
-path = "test_imgs/t1.jpg"
+path = "../../test_imgs/t1.jpg"
 image = Image.open(path)
 
 inputs = feature_extractor(images=image, return_tensors="pt")
