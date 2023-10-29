@@ -23,3 +23,4 @@ Repo to test out paperspace platforms
 
 
 ## Using HF-FastAPI-Paperspace Template
+- Base image is large, taking a lot of time to build locally
