@@ -31,3 +31,5 @@ Repo to test out paperspace platforms
         - `v1.2` -> `v1.3`
         - `configPath` explanation, how does the runner find `paperspace.json` file.
     - This [link](https://docs-next.paperspace.com/deploying/app-config) helped
+- Slightly unpredictable boot times, better logging can help?
+    - Got an email it could be multiple issues and reported to paperspace 

@@ -2,7 +2,7 @@ apiVersion: v1
 # To disable the application change enabled: false
 enabled: true
 # The name of your project
-name: meher92-fashion-bb-test
+name: meher92-fashion-bb-test-cli
 containerRegistry: meher92-dockerhub-experiment-repositiry
 # You should replace this with a Docker image you build
 image: meher92/experiments
@@ -41,7 +41,7 @@ healthChecks:
 # settings here
 resources:
   replicas: 1
-  machineType: RTX4000
+  machineType: C5
   # The ports the service is running on inside the above image
   ports: [8000]
   autoscaling:

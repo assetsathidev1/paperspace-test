@@ -53,8 +53,66 @@ class FashionBoundingBoxPredictor:
             })
         return results
 
-    def predict(self, image: Image) -> list(dict):
+    def predict(self, image: Image):
         features = self.feature_extractor(images=image, return_tensors="pt")
         outputs = self.model(**features)
         bboxes = self.visualize_predictions(image, outputs, threshold=self.threshold)
         return bboxes
+    
+
+"""
+write a function that reads the finetuning/export-data-pinterest-600.jsonl file
+and converts into a parquet file with the following columns:
+{ "bbox_id": [ 150311, 150312, 150313, 150314 ], "category": [ 23, 23, 33, 10 ], "bbox": [ [ 445, 910, 505, 983 ], [ 239, 940, 284, 994 ], [ 298, 282, 386, 352 ], [ 210, 282, 448, 665 ] ], "area": [ 1422, 843, 373, 56375 ] }
+the ids can be random generated and the bbox are xmin, ymin, xmax, ymax in pascal voc format.
+the original file is a jsonl file with the following format:
+{"imageGcsUri":"gs://nh-intern-skroll/update/47287864829918906","boundingBoxAnnotations":[{"displayName":"neckline","xMin":0.052823315118397086,"xMax":0.45901639344262296,"yMin":0.4635627530364373,"yMax":0.7044534412955465,"annotationResourceLabels":{"aiplatform.googleapis.com/annotation_set_name":"8361330731422580736"}}],"dataItemResourceLabels":{}}
+where the boundingBoxAnnotations have xmin, ymin, xmax, ymax in normalised manner and the image is in a gcs uri
+"""
+import json
+import pandas as pd
+import numpy as np
+from google.cloud import storage
+import io
+import datasets
+
+client = storage.Client()
+bucket = client.get_bucket("nh-intern-skroll")
+bbbox_id_counter = 1000
+def convert_jsonl_to_hfdataset(jsonl_file):
+    global bbbox_id_counter
+    with open(jsonl_file, "r") as f:
+        lines = f.readlines()
+    data = []
+    for line in lines[:6]:
+        new_row = {}
+        json_line = json.loads(line)
+        imageGcsUri = json_line["imageGcsUri"]
+        _, blob_name = imageGcsUri.replace("gs://", "").split("/", 1)
+        blob = bucket.blob(blob_name)
+        image_bytes = blob.download_as_bytes()
+        image = Image.open(io.BytesIO(image_bytes))
+        image_w, image_h = image.size
+        new_row["image"] = image
+        new_row["width"] = image_w
+        new_row["height"] = image_h
+        new_row["objects"] = {"bbox_id": [], "category": [], "bbox": [], "area": []}
+        for bbox in json_line["boundingBoxAnnotations"]:
+            bbbox_id_counter += 1
+            bbox_id = bbbox_id_counter
+            category = cats.index(bbox["displayName"])
+            xmin = int(bbox["xMin"] * image_w)
+            xmax = int(bbox["xMax"] * image_w)
+            ymin = int(bbox["yMin"] * image_h)
+            ymax = int(bbox["yMax"] * image_h)
+            area = (xmax - xmin) * (ymax - ymin)
+            new_row["objects"]["bbox_id"].append(bbox_id)
+            new_row["objects"]["category"].append(category)
+            new_row["objects"]["bbox"].append([xmin, ymin, xmax, ymax])
+            new_row["objects"]["area"].append(area)
+        data.append(new_row)
+    hf_dataset = datasets.Dataset.from_list(data)
+    return hf_dataset, data
+
+# hf_dataset, data = convert_jsonl_to_hfdataset("finetuning/export-data-pinterest-600.jsonl")
+
