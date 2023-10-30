@@ -84,7 +84,7 @@ def convert_jsonl_to_hfdataset(jsonl_file):
     with open(jsonl_file, "r") as f:
         lines = f.readlines()
     data = []
-    for line in lines[:6]:
+    for line in lines:
         new_row = {}
         json_line = json.loads(line)
         imageGcsUri = json_line["imageGcsUri"]
@@ -115,4 +115,4 @@ def convert_jsonl_to_hfdataset(jsonl_file):
     return hf_dataset, data
 
 # hf_dataset, data = convert_jsonl_to_hfdataset("finetuning/export-data-pinterest-600.jsonl")
-
+# hf_dataset.push_to_hub("meher92/neckline_sleeve_imgs_600", private=True)

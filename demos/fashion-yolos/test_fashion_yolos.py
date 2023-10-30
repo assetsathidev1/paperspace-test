@@ -48,17 +48,17 @@ def plot_results(pil_img, prob, boxes):
         ax.text(xmin, ymin, idx_to_text(cl), fontsize=10,
                 bbox=dict(facecolor=c, alpha=0.8))
     plt.axis('off')
-    plt.savefig("outputs/image.png")
+    plt.savefig("../../outputs/image.png")
 
-MODEL_NAME = "valentinafeve/yolos-fashionpedia"
+MODEL_NAME = "meher92/yolos-fashionpedia-sntuned"
 FEATURE_EXTRACTOR_NAME = "hustvl/yolos-small"
 feature_extractor = YolosFeatureExtractor.from_pretrained(FEATURE_EXTRACTOR_NAME)
 model = YolosForObjectDetection.from_pretrained(MODEL_NAME)
 
 
-path = "../../test_imgs/t1.jpg"
+path = "../../test_imgs/t3.jpg"
 image = Image.open(path)
 
 inputs = feature_extractor(images=image, return_tensors="pt")
 outputs = model(**inputs)
-res = visualize_predictions(image, outputs, threshold=0.5)
+res = visualize_predictions(image, outputs, threshold=0.8)

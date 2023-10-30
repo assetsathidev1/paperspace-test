@@ -1,7 +1,7 @@
 name: test-pr-docker
 on:
   pull_request:
-    types: [opened, closed, synchronize]
+    types: [closed]
     branches:
       - main
 
