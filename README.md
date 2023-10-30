@@ -31,3 +31,9 @@ Repo to test out paperspace platforms
         - `v1.2` -> `v1.3`
         - `configPath` explanation, how does the runner find `paperspace.json` file.
     - This [link](https://docs-next.paperspace.com/deploying/app-config) helped
+- Slightly unpredictable boot times, better logging can help?
+    - Got an email it could be multiple issues and reported to paperspace 
+- HF login seems to be failing in Notebooks
+- Tensorboard was not coming up using [this link](https://docs.paperspace.com/gradient/notebooks/tensorboard/#how-to-configure-a-tensorboard-in-gradient-notebooks)
+    - had to install `pygments`
+    - my [tensorboard url](https://tensorboard-nl9d5a3r0k.clg07azjl.paperspacegradient.com/)
