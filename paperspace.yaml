@@ -2,7 +2,7 @@ apiVersion: v1
 # To disable the application change enabled: false
 enabled: true
 # The name of your project
-name: meher92-fashion-bb-test-cli
+name: fashion-bb-hf-demo
 containerRegistry: meher92-dockerhub-experiment-repositiry
 # You should replace this with a Docker image you build
 image: meher92/experiments
