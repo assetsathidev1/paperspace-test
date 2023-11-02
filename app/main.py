@@ -128,7 +128,7 @@ def readiness_check():
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Fashion Bounding Box HF REST API!"}
+    return {"message": "Welcome to TUNED Fashion Bounding Box HF REST API!"}
 
 
 # Add post endpoint that takes a file as input and returns a json with bounding boxes and labels
