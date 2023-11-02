@@ -2,23 +2,23 @@ apiVersion: v1
 # To disable the application change enabled: false
 enabled: true
 # The name of your project
-name: fashion-bb-tuned-demo
+name: fashion-bb-pr-demo
 containerRegistry: meher92-dockerhub-experiment-repositiry
 # You should replace this with a Docker image you build
 image: meher92/experiments
 
 env: 
   - name: MODEL_NAME
-    value: /opt/integrations/yolos-fashionpedia-sntuned
+    value: /opt/integrations/yolos-fashionpedia
   - name: FEATURE_EXTRACTOR_NAME
     value: /opt/integrations/yolos-small
 
 # Using integrations to bring in external resource
 integrations:
   - type: git-lfs # git-lfs used for Hugging Face models
-    name: yolos-fashionpedia-sntuned
-    url: https://huggingface.co/meher92/yolos-fashionpedia-sntuned
-    path: /opt/integrations/yolos-fashionpedia-sntuned
+    name: yolos-fashionpedia
+    url: https://huggingface.co/valentinafeve/yolos-fashionpedia
+    path: /opt/integrations/yolos-fashionpedia
   - type: git-lfs # git-lfs used for Hugging Face models
     name: yolos-small
     url: https://huggingface.co/hustvl/yolos-small
