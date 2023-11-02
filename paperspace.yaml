@@ -17,7 +17,7 @@ env:
 integrations:
   - type: git-lfs # git-lfs used for Hugging Face models
     name: yolos-fashionpedia-sntuned
-    url: meher92/yolos-fashionpedia-sntuned
+    url: https://huggingface.co/meher92/yolos-fashionpedia-sntuned
     path: /opt/integrations/yolos-fashionpedia-sntuned
   - type: git-lfs # git-lfs used for Hugging Face models
     name: yolos-small
